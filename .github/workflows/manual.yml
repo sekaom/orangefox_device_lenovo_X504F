@@ -55,16 +55,12 @@ jobs:
         ./orangefox_sync_legacy.sh --branch 9.0 --path ~/fox9
     - name: Clone the device tree
       run: git clone https://github.com/sekaom/orangefox_device_lenovo_X504F -b orangefox-9.0 --depth=1 ~/fox/device/lenovo/X504F
-
-    - name: source build envsetup.sh
-      run: |
-        cd ~/fox9
-        source build/envsetup.sh
     - name: Building...
       run: |
         export ALLOW_MISSING_DEPENDENCIES=true
         export FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER=1
         export LC_ALL="C"
+        source build/envsetup.sh
         lunch omni_X504F-eng
         mka recovery -j$(nproc --all)
     - name: copy out files
