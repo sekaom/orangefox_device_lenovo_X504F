@@ -72,7 +72,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: my-artifact
-          file: |
+          files: |
             ~/fox9/out/target/product/X504F/*.zip
             ~/fox9/out/target/product/X504F/recovery.img
  
