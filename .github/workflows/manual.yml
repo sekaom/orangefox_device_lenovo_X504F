@@ -73,6 +73,6 @@ jobs:
         with:
           name: Recovery result
           path: |
-            ~/fox9/out/target/product/X504F/*.zip
+            !~/fox9/out/target/product/X504F/*.zip
             ~/fox9/out/target/product/X504F/recovery.img
  
