@@ -71,7 +71,7 @@ jobs:
     - name: upload result
         uses: actions/upload-artifact@v3
         with:
-          name: Recovery result
+          name: my-artifact
           path: |
             !~/fox9/out/target/product/X504F/*.zip
             ~/fox9/out/target/product/X504F/recovery.img
