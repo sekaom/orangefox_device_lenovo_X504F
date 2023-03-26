@@ -68,7 +68,7 @@ jobs:
         lunch omni_X504F-eng
         mka recovery -j$(nproc --all)
         
-    - name: 
+    - name: upload result
        uses: actions/download-artifact@v3
        with:
          name: Recovery result
