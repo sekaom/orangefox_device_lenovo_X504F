@@ -72,9 +72,10 @@ jobs:
        mkdir ~/output
        cp ~/fox9/out/target/product/X504F/recovery.img ~/
        cp ~/fox9/out/target/product/X504F/*.zip ~/
+       cc ~
     - name: upload result
         uses: actions/upload-artifact@v3
         with:
           name: my-artifact
-          path: ~/output/
+          path: output/*
  
