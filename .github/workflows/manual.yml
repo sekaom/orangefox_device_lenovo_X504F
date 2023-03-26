@@ -68,10 +68,10 @@ jobs:
         lunch omni_X504F-eng
         mka recovery -j$(nproc --all)
         
-    - name: upload result
-       uses: actions/download-artifact@v3
-       with:
-         name: Recovery result
-         path: ~/fox9/out/target/product/X504F/*.zip
+  #  - name: upload result
+   #    uses: actions/download-artifact@v3
+   #    with:
+    #     name: Recovery result
+   #      path: ~/fox9/out/target/product/X504F/*.zip
      #    path: ~/fox9/out/target/product/X504F/recovery.img
  
