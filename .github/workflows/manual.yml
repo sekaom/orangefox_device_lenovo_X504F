@@ -50,6 +50,8 @@ jobs:
         cd ~/OrangeFox_sync
         git clone https://gitlab.com/OrangeFox/sync.git 
         cd ~/OrangeFox_sync/sync/legacy
+        cp orangefox_sync_legacy.sh ../
+        cd ..
         ./orangefox_sync_legacy.sh --branch 9.0 --path ~/fox9
 
 
