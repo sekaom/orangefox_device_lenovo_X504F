@@ -67,12 +67,14 @@ jobs:
         export LC_ALL="C"
         lunch omni_X504F-eng
         mka recovery -j$(nproc --all)
-        
+    - name: copy out files
+      run: |
+       mkdir ~/output
+       cp ~/fox9/out/target/product/X504F/recovery.img ~/
+       cp ~/fox9/out/target/product/X504F/*.zip ~/
     - name: upload result
         uses: actions/upload-artifact@v3
         with:
           name: my-artifact
-          files: |
-            ~/fox9/out/target/product/X504F/*.zip
-            ~/fox9/out/target/product/X504F/recovery.img
+          path: ~/output/
  
