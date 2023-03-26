@@ -69,10 +69,10 @@ jobs:
         mka recovery -j$(nproc --all)
         
     - name: upload result
-        uses: actions/download-artifact@v3
+        uses: actions/upload-artifact@v3
         with:
           name: Recovery result
           path: |
-        #    !~/fox9/out/target/product/X504F/*.zip
+            !~/fox9/out/target/product/X504F/*.zip
             ~/fox9/out/target/product/X504F/recovery.img
  
