@@ -60,6 +60,7 @@ jobs:
         export ALLOW_MISSING_DEPENDENCIES=true
         export FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER=1
         export LC_ALL="C"
+        cd ~/fox9
         source build/envsetup.sh
         lunch omni_X504F-eng
         mka recovery -j$(nproc --all)
@@ -73,5 +74,5 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: my-artifact
-        path: output/*
+        path: ~/output/*
  
