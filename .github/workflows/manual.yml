@@ -56,7 +56,7 @@ jobs:
         cd ..
         ./orangefox_sync_legacy.sh --branch 9.0 --path ~/fox9
     - name: Clone the device tree
-      run: git clone https://github.com/sekaom/orangefox_device_lenovo_X504F -b orangefox-9.0 --depth=1 ~/fox/device/lenovo/X504F
+      run: git clone https://github.com/sekaom/orangefox_device_lenovo_X504F -b orangefox-9.0 --depth=1 ~/fox9/device/lenovo/X504F
     - name: Building...
       run: |
         export ALLOW_MISSING_DEPENDENCIES=true
