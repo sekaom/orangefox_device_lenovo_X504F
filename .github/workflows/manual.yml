@@ -34,18 +34,21 @@ jobs:
         sudo apt update
         sudo apt install git aria2 -y
         sudo apt -y install git-core gnupg flex bison gperf build-essential zip curl zlib1g-dev gcc-multilib g++-multilib libc6-dev-i386 lib32ncurses5-dev x11proto-core-dev libx11-dev tree lib32z-dev libgl1-mesa-dev libxml2-utils xsltproc unzip jq bc bison build-essential ccache curl flex g++-multilib gcc-multilib git gnupg gperf lib32ncurses5-dev lib32readline-dev lib32z1-dev liblz4-tool libncurses5-dev libsdl1.2-dev libssl-dev libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools xsltproc zip zlib1g-dev imagemagick libbz2-dev libssl-dev lzma ncftp bash-completion python openjdk-8-jdk qemu-user-static
+
     - name: Clone orangefox envsetup script
       run: |
         cd ~
         git clone https://gitlab.com/OrangeFox/misc/scripts
         cd scripts
         sudo bash setup/android_build_env.sh
+
     - name: Install Repo
       run: |
         mkdir ~/bin
         curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
         chmod a+x ~/bin/repo
         PATH=~/bin:$PATH
+
     - name: Sync orangefox sourcecode
       run: |
         mkdir ~/OrangeFox_sync
@@ -55,8 +58,16 @@ jobs:
         cp orangefox_sync_legacy.sh ../
         cd ..
         ./orangefox_sync_legacy.sh --branch 9.0 --path ~/fox9
+
+    - name: Fix busybox bug
+      run: |
+        cd ~/fox9
+        rm -rf external/busybox
+        git clone https://github.com/TeamWin/android_external_busybox -b android-9.0 --depth=1 ~/fox9/external/busybox
+
     - name: Clone the device tree
       run: git clone https://github.com/sekaom/orangefox_device_lenovo_X504F -b orangefox-9.0 --depth=1 ~/fox9/device/lenovo/X504F
+
     - name: Building...
       run: |
         export ALLOW_MISSING_DEPENDENCIES=true
@@ -66,12 +77,14 @@ jobs:
         source build/envsetup.sh
         lunch omni_X504F-eng
         mka recovery -j$(nproc --all)
+
     - name: copy out files
       run: |
        mkdir ~/output
        cp ~/fox9/out/target/product/X504F/recovery.img ~/
        cp ~/fox9/out/target/product/X504F/*.zip ~/
        cd ~
+
     - name: upload result
       uses: actions/upload-artifact@v3
       with:
